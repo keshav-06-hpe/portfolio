@@ -2322,3 +2322,20 @@ html[data-theme="light"] .terminal-view { background-color: #fffbea; }
 html[data-theme="light"] .terminal-view .terminal-workspace { background: #fffdf3; }
 html[data-theme="light"] .terminal-view .terminal-window-bar { background: #fff0c9; }
 html[data-theme="light"] .terminal-view .terminal-bottom-bar { background: #fff4d2; }
+
+@media (max-width: 560px) {
+  body.developer-portfolio .nav-actions { align-items: center; gap: 8px; }
+  body.developer-portfolio .nav-actions .theme-toggle,
+  body.developer-portfolio .nav-actions .menu-toggle {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    place-items: center;
+    padding: 0;
+  }
+  body.developer-portfolio .nav-actions .theme-toggle > svg,
+  body.developer-portfolio .nav-actions .menu-toggle > svg { display: block; grid-area: 1 / 1; margin: 0; }
+  body.developer-portfolio .nav-actions .theme-toggle > svg { width: 20px; height: 20px; }
+  body.developer-portfolio .nav-actions .menu-toggle > svg { width: 22px; height: 22px; }
+}
