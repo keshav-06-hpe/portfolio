@@ -15,7 +15,7 @@
   }
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-  renderer.setClearColor(0x111315, 0);
+  renderer.setClearColor(0x130c1b, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -24,7 +24,7 @@
   const camera = new THREE.OrthographicCamera(-10, 10, 7, -7, .1, 100);
   camera.position.set(13, 12, 15);
   camera.lookAt(0, 1, 0);
-  const ambientLight = new THREE.HemisphereLight(0xe3e4e1, 0x252729, 2.6);
+  const ambientLight = new THREE.HemisphereLight(0xf6edc0, 0x21152b, 2.6);
   scene.add(ambientLight);
   const light = new THREE.DirectionalLight(0xffffff, 3.2);
   light.position.set(-5, 12, 7);
@@ -39,12 +39,12 @@
 
   const structure = new THREE.Group();
   scene.add(structure);
-  const white = new THREE.MeshStandardMaterial({ color: 0x9ea2a3, roughness: .36, metalness: .28 });
-  const graphite = new THREE.MeshStandardMaterial({ color: 0x292b2e, roughness: .5, metalness: .3 });
+  const white = new THREE.MeshStandardMaterial({ color: 0xf0e5b5, roughness: .36, metalness: .28 });
+  const graphite = new THREE.MeshStandardMaterial({ color: 0x1b1026, roughness: .5, metalness: .3 });
   const layers = [];
   const nodeGeometry = new THREE.BoxGeometry(.82, .58, .82);
   const plateGeometry = new THREE.BoxGeometry(4.6, .13, 3.6);
-  const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x727677, transparent: true, opacity: .3 });
+  const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x60486c, transparent: true, opacity: .3 });
 
   function addBlock(geometry, material, parent, position) {
     const mesh = new THREE.Mesh(geometry, material);
@@ -59,7 +59,7 @@
     const group = new THREE.Group();
     const height = layerIndex * 1.65;
     group.position.y = height;
-    const accent = new THREE.MeshStandardMaterial({ color: name === "compute" ? 0xd7b764 : 0x64696c, roughness: .46, metalness: .12 });
+    const accent = new THREE.MeshStandardMaterial({ color: name === "compute" ? 0xf0d66e : 0x553a66, roughness: .46, metalness: .12 });
     addBlock(plateGeometry, white, group, [0, 0, 0]);
     const edges = new THREE.LineSegments(new THREE.EdgesGeometry(plateGeometry), edgeMaterial);
     group.add(edges);
@@ -78,14 +78,14 @@
     structure.add(group);
   });
 
-  const connectorMaterial = new THREE.MeshStandardMaterial({ color: 0x929798, metalness: .5, roughness: .4 });
+  const connectorMaterial = new THREE.MeshStandardMaterial({ color: 0xb9a8c2, metalness: .5, roughness: .4 });
   for (const horizontal of [-2.03, 2.03]) {
     for (const depth of [-1.48, 1.48]) {
       addBlock(new THREE.CylinderGeometry(.025, .025, 3.35, 8), connectorMaterial, structure, [horizontal, 1.7, depth]);
     }
   }
 
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ color: 0x55585b, opacity: .16 }));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.ShadowMaterial({ color: 0x21152b, opacity: .16 }));
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = -.4;
   floor.receiveShadow = true;
@@ -104,19 +104,19 @@
 
   function updateLayerColors() {
     layers.forEach(layer => layer.accent.color.setHex(layer.name === activeLayer
-      ? lightTheme ? 0x835f18 : 0xd7b764
-      : lightTheme ? 0xbfc1c2 : 0x64696c));
+      ? lightTheme ? 0x68477c : 0xf0d66e
+      : lightTheme ? 0xe7dcaa : 0x553a66));
   }
 
   function applySceneTheme() {
     lightTheme = document.documentElement.dataset.theme === "light";
-    renderer.setClearColor(lightTheme ? 0xf6f4ef : 0x111315, 0);
-    white.color.setHex(lightTheme ? 0xf0f0ed : 0x9ea2a3);
-    graphite.color.setHex(lightTheme ? 0x45494d : 0x292b2e);
-    ambientLight.color.setHex(lightTheme ? 0xffffff : 0xe3e4e1);
-    ambientLight.groundColor.setHex(lightTheme ? 0x8f9294 : 0x252729);
-    edgeMaterial.color.setHex(lightTheme ? 0x888d8f : 0x727677);
-    connectorMaterial.color.setHex(lightTheme ? 0x777c80 : 0x929798);
+    renderer.setClearColor(lightTheme ? 0xfffbea : 0x130c1b, 0);
+    white.color.setHex(lightTheme ? 0xfffdf3 : 0xf0e5b5);
+    graphite.color.setHex(lightTheme ? 0x614874 : 0x1b1026);
+    ambientLight.color.setHex(lightTheme ? 0xffffff : 0xf6edc0);
+    ambientLight.groundColor.setHex(lightTheme ? 0xe6ddbe : 0x21152b);
+    edgeMaterial.color.setHex(lightTheme ? 0x917aa0 : 0x60486c);
+    connectorMaterial.color.setHex(lightTheme ? 0x8e779d : 0xb9a8c2);
     floor.material.opacity = lightTheme ? .18 : .16;
     updateLayerColors();
     renderer.render(scene, camera);

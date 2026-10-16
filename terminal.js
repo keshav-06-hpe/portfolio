@@ -22,7 +22,7 @@
   const projectSlugs = new Map([
     ["atlas", "ATLAS"],
     ["rack-resiliency-service", "Rack Resiliency Service"],
-    ["postgresql-operator", "A healthier PostgreSQL operator"],
+    ["postgresql-operator", "A Vulnerability-Free System"],
     ["lets-fit", "Let's Fit"],
     ["assisted-vision", "Assisted Vision"],
     ["xss-detection", "XSS-Detection"]

@@ -2,7 +2,6 @@
 
 (() => {
   const storageKey = "portfolio-theme";
-  const systemPreference = window.matchMedia("(prefers-color-scheme: dark)");
   let preference = null;
 
   try {
@@ -33,13 +32,10 @@
   }
 
   function followPreference() {
-    applyTheme(preference || (systemPreference.matches ? "dark" : "light"));
+    applyTheme(preference || "dark");
   }
 
   followPreference();
-  systemPreference.addEventListener("change", () => {
-    if (!preference) followPreference();
-  });
   window.addEventListener("storage", (event) => {
     if (event.key !== storageKey && event.key !== null) return;
     preference = event.newValue === "light" || event.newValue === "dark" ? event.newValue : null;
