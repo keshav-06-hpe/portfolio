@@ -11,15 +11,17 @@
   } catch {}
 
   function updateToggle() {
-    const toggle = document.querySelector(".theme-toggle");
-    if (!toggle) return;
+    const toggles = document.querySelectorAll(".theme-toggle");
     const isLight = document.documentElement.dataset.theme === "light";
     const label = isLight ? "Switch to dark mode" : "Switch to light mode";
-    toggle.setAttribute("aria-label", label);
-    toggle.setAttribute("aria-pressed", String(isLight));
-    toggle.title = label;
-    toggle.querySelector(".theme-tooltip").textContent = label;
-    toggle.hidden = false;
+    toggles.forEach(toggle => {
+      toggle.setAttribute("aria-label", label);
+      toggle.setAttribute("aria-pressed", String(isLight));
+      toggle.title = label;
+      const tooltip = toggle.querySelector(".theme-tooltip");
+      if (tooltip) tooltip.textContent = label;
+      toggle.hidden = false;
+    });
   }
 
   function applyTheme(theme) {
@@ -45,14 +47,14 @@
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector(".theme-toggle");
-    if (!toggle) return;
-    toggle.addEventListener("click", () => {
-      preference = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      try {
-        window.localStorage.setItem(storageKey, preference);
-      } catch {}
-      applyTheme(preference);
+    document.querySelectorAll(".theme-toggle").forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        preference = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        try {
+          window.localStorage.setItem(storageKey, preference);
+        } catch {}
+        applyTheme(preference);
+      });
     });
     updateToggle();
   });

@@ -7,7 +7,44 @@ if (window.lucide) {
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 const typedRole = document.querySelector("#typed-role");
-if (typedRole && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduceMotion) {
+  const introTargets = [document.querySelector(".hero-greeting"), document.querySelector("#hero-title")].filter(Boolean);
+  let characterIndex = 0;
+  introTargets.forEach(target => {
+    const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach(textNode => {
+      const fragment = document.createDocumentFragment();
+      for (const character of textNode.textContent) {
+        const letter = document.createElement("span");
+        letter.className = "hero-typed-character";
+        letter.textContent = character;
+        fragment.append(letter);
+        characterIndex += 1;
+      }
+      textNode.replaceWith(fragment);
+    });
+  });
+  const letters = [...document.querySelectorAll(".hero-typed-character")];
+  const typingSpeed = 38;
+  const eraseSpeed = 20;
+  const holdDuration = 1700;
+  function typeIntro() {
+    letters.forEach((letter, index) => {
+      window.setTimeout(() => letter.classList.add("is-visible"), index * typingSpeed);
+    });
+    const eraseStart = letters.length * typingSpeed + holdDuration;
+    [...letters].reverse().forEach((letter, index) => {
+      window.setTimeout(() => letter.classList.remove("is-visible"), eraseStart + index * eraseSpeed);
+    });
+    window.setTimeout(typeIntro, eraseStart + letters.length * eraseSpeed + 500);
+  }
+  typeIntro();
+}
+
+if (typedRole && !reduceMotion) {
   const roleText = typedRole.textContent;
   const roleLine = typedRole.closest(".role-line");
   roleLine.setAttribute("aria-label", roleText);
