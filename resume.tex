@@ -1,0 +1,347 @@
+    \documentclass[a4paper,11pt]{article}
+    \usepackage{fontawesome5}
+    \usepackage{latexsym}
+    \usepackage[dvipsnames]{xcolor}
+    \usepackage{float}
+    \usepackage{ragged2e}
+    \usepackage[empty]{fullpage}
+    \usepackage{wrapfig}
+    \usepackage{lipsum}
+    \usepackage{tabularx}
+    \usepackage{titlesec}
+    \usepackage{geometry}
+    % \usepackage{fontawesome}
+    \usepackage{marvosym}
+    \usepackage{verbatim}
+    \usepackage{pifont}
+    \usepackage{enumitem}
+    \newcommand\myshade{85}
+    \colorlet{mylinkcolor}{violet}
+    \colorlet{mycitecolor}{YellowOrange}
+    \colorlet{myurlcolor}{black}
+    \usepackage[colorlinks=true,linkcolor=gray,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=myurlcolor!\myshade!black]{hyperref}
+    \usepackage{fancyhdr}
+    \usepackage{multicol}
+    \usepackage{graphicx}
+    \usepackage{cfr-lm}
+    \usepackage[T1]{fontenc}
+    \setlength{\multicolsep}{0.5pt}
+    \pagestyle{fancy}
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \geometry{left=1.4cm, top=0.7cm, right=1.2cm, bottom=0.4cm}
+    % Adjust margins
+    %\addtolength{\oddsidemargin}{-0.5in}
+    %\addtolength{\evensidemargin}{-0.5in}
+    %\addtolength{\textwidth}{1in}
+    \usepackage[most]{tcolorbox}
+    \tcbset{
+    	frame code={}
+    	center title,
+    	left=0pt,
+    	right=0pt,
+    	top=0pt,
+    	bottom=0pt,
+    	colback=gray!32,
+    	colframe=white,
+    	width=\dimexpr\textwidth\relax,
+    	enlarge left by=-2mm,
+    	boxsep=4pt,
+    	arc=0pt,outer arc=0pt,
+    }
+     
+    \urlstyle{same}
+     
+    \raggedright
+    \setlength{\tabcolsep}{0in}
+     
+    % Sections formatting
+    \titleformat{\section}{
+      \vspace{-4pt}\scshape\raggedright\large
+    }{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+     
+    %-------------------------
+    % Custom commands
+
+    \colorlet{languagecolor}{purple}
+    \colorlet{nolanguagecolor}{gray}
+    \newcount\languagecount
+    \newcommand\languageknowledge[2]
+      {%
+        \hbox
+          {%
+            \makebox[4cm][l]{#1}%
+            \languagecount=0
+            \loop\ifnum\languagecount<#2
+              \advance\languagecount1
+              \textcolor{languagecolor}{$\bullet$}%
+            \repeat
+            \loop\ifnum\languagecount<5
+              \advance\languagecount1
+              \textcolor{nolanguagecolor}{$\bullet$}%
+            \repeat
+          }%
+      }
+
+    
+    \newcommand{\resumeItem}[2]{
+      \item{
+        \textbf{#1}{:\hspace{0.2mm}#2 \vspace{0.8mm}}
+      }
+    }
+     
+    \newcommand{\resumePOR}[3]{
+    \vspace{0.5mm}\item
+        \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{#1},\hspace{0.3mm}#2 & \textit{\small{#3}}
+        \end{tabular*}
+        \vspace{-2mm}
+    }
+     
+    \newcommand{\resumeSubheading}[4]{
+    \vspace{0.5mm}\item
+        \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{#1} & \textit{\footnotesize{#4}} \\
+            \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+        \end{tabular*}
+        \vspace{-2.4mm}
+    }
+     
+    \newcommand{\resumeProject}[4]{
+    \vspace{0.5mm}\item[\textbullet]
+        \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            {\bf {#1}} | \footnotesize{\textit{#2}} & \footnotesize{#4} | \textit{\footnotesize{#3}}
+        \end{tabular*}
+        \vspace{-4.5mm}
+    }
+    
+    \newcommand{\internProject}[3]{
+    \vspace{0.5mm}\item[\textbullet]
+        \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            {\bf {#1}} | \footnotesize{\textit{#2}} & \textit{\footnotesize{#3}}
+        \end{tabular*}
+        \vspace{-4.5mm}
+    }
+    
+    \newcommand{\courseProject}[4]{
+    \vspace{0.5mm}\item[\textbullet]
+        \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            {\bf {#1}} & \textit{\footnotesize{#3}} \\
+            \footnotesize{\textit{#2}} & \footnotesize{#4}
+        \end{tabular*}
+        \vspace{-2.1mm}
+    }
+     
+    \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+     
+    % \renewcommand{\labelitemii}{$\circ$}
+    \renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+     
+    \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]}
+    \newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+    \newcommand{\resumeItemListStart}{\vspace{1.7mm}\begin{justify}\begin{itemize}[leftmargin=4mm, rightmargin=2ex, noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
+     
+    \newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+    \newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+    \newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-2mm}}
+    \newcommand{\cvsection}[1]{%
+    \vspace{2mm}
+    \begin{tcolorbox}
+        \textbf{\large #1}
+    \end{tcolorbox}
+        \vspace{-4mm}
+    }
+     
+    \newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+    \newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+    \newcolumntype{C}{>{\centering\arraybackslash}X}%
+    %---- End of Packages and Functions ------
+     
+    %-------------------------------------------
+    %%%%%%  CV STARTS HERE  %%%%%%%%%%%
+    %%%%%% DEFINE ELEMENTS HERE %%%%%%%
+    
+    \newcommand{\name}{Keshav Varshney} % Your Name
+    % \includegraphics[width=0.5\textwidth]{Keshav.jpg}
+    \newcommand{\course}{B.Tech - Computer Science  and Engineering} % Your Course
+    \newcommand{\roll}{20BCE0285} % Your Roll No.
+    \newcommand{\phone}{7017809615} % Your Phone Number
+    \newcommand{\emaila}{{k.varshney062@gmail.com}} %Email 1
+    %Email 2
+    \newcommand{\github}{\textcolor{blue}{keshav-06 |}} %Github
+    \newcommand{\website}{https://example.com} %Website
+    \newcommand{\linkedin}{\textcolor{blue}{keshav062}} %linkedin
+     
+    \begin{document}
+    \fontfamily{cmr}\selectfont
+
+    \parbox{\dimexpr\linewidth-0.3cm\relax}{
+    \begin{tabularx}{\linewidth}{L r}
+      \textbf{\LARGE \name} &   {\faPhone \: +91-\phone} \\
+      {Software Engineer}  &  \href{mailto:\emaila}{\faEnvelope \:\emaila}\\
+     % \course &  \href{mailto:\emailb}{\emailb}\\
+      \href{http://www.hpe.com/}{Hewlett Packard Enterprise} &  \href{https://www.github.com/keshav-06/}{\faGithub \:\:\github} \href{https://www.linkedin.com/in/keshav062}{\faLinkedin \:\:\linkedin}\\
+    \end{tabularx}
+    }
+    \vspace{-4mm}
+
+    %-----------WORK EXPERIENCE-----------------
+    {\large \textbf{\begin{tcolorbox}\textsc{WORK EXPERIENCE}\end{tcolorbox}}}
+    \resumeSubHeadingListStart
+        \vspace{-5.5mm}
+        \resumeProject
+          {Software Engineer} {HPE}
+          {Sept '24 - Present} {Bangalore, India\:}
+          \vspace{-1mm}
+          \resumeItemListStart
+            \item [\textbullet] \textbf{Hardware Management Service (HMS)}
+            \begin{itemize}[leftmargin=5mm, rightmargin=2ex, noitemsep, labelsep=1.2mm, itemsep=0mm]
+              \item [\textopenbullet] Currently handling customer issues across \textbf{3 core HMS services} in Cray \textbf{CSM}: \textbf{SLS}, \textbf{FAS}, and \textbf{RTS}.
+              \item [\textopenbullet] Troubleshoot \textbf{SLS (System Layout Service)} issues as the system-design source of truth for node/cabinet topology and network mappings.
+              \item [\textopenbullet] Resolve \textbf{FAS} workflows and \textbf{RTS (Redfish Translation Service)} issues, which aid management of hardware not managed by Redfish (for example, ServerTech PDUs in River cabinets).
+            \end{itemize}
+            \item [\textbullet] \textbf{Internal Tool: ATLAS (Automated Triaging \& Log Analysis Solution)}
+            \begin{itemize}[leftmargin=5mm, rightmargin=2ex, noitemsep, labelsep=1.2mm, itemsep=0mm]
+              \item [\textopenbullet] Led a team to build a 3-stage AI RCA pipeline, reducing manual triage by \textbf{\textasciitilde80\%}.
+              \item [\textopenbullet] Built \textbf{CPV} with \textbf{50+ automated pre-upgrade checks} across Kubernetes, Ceph, PostgreSQL, etcd, \& networks.
+              \item [\textopenbullet] Built FAISS semantic search over \textbf{66+ docs} and \textbf{3000+} JIRA tickets with \textbf{zero} manual log correlation.
+              \item [\textopenbullet] Integrated a TypeScript MCP server with VS Code Copilot Chat, exposing \textbf{14 tools} for structured RCA generation.
+              \item [\textopenbullet] Rolled out ATLAS to \textbf{3+ teams}, delivering production diagnostics and reducing mean time to resolution (MTTR).
+            \end{itemize}
+            \item [\textbullet] \textbf{Rack Resiliency Service (RRS)}
+            \begin{itemize}[leftmargin=5mm, rightmargin=2ex, noitemsep, labelsep=1.2mm, itemsep=0mm]
+              \item [\textopenbullet] Designed and implemented a backend service to manage critical services and zones for HPE HPC clusters.
+              \item [\textopenbullet] Developed \textbf{CLI (cray rrs)} with \textbf{7 new commands} to list and describe zones and critical services, and create new service definitions through \textbf{JSON} payloads.
+              \item [\textopenbullet] Mapped Kubernetes topology zones with Ceph storage zones, enabling a unified resiliency view and reducing manual intervention during service disruptions \textbf{by 30\%}.
+              \item [\textopenbullet] Containerized and deployed the backend as a pod with APIs exposed through a virtual service, improving accessibility and integration with other cluster tools.
+              \item [\textopenbullet] Developed and maintained \textbf{20 automated API test cases} for RRS using Python, improving test coverage and reducing manual validation effort \textbf{by 40\%}.
+            \end{itemize}
+            \item [\textbullet] \textbf{Platform Engineering Team}
+            \begin{itemize}[leftmargin=5mm, rightmargin=2ex, noitemsep, labelsep=1.2mm, itemsep=0mm]
+              \item [\textopenbullet] Upgraded \textbf{cray-postgres-operator} from \textbf{v1.10.0} to \textbf{v1.14.0} for Cray CSM environments, validating compatibility and rollout behavior across operator-managed PostgreSQL components.
+              \item [\textopenbullet] Implemented and validated upstream changes in \href{https://github.com/Cray-HPE/cray-postgres-operator/}{\textit{\textcolor{blue}{Cray-HPE/cray-postgres-operator}}} to execute a \textbf{4-minor-version} operator upgrade (\textbf{v1.10.0 to v1.14.0}), reducing \textbf{high CVEs to 0} and \textbf{medium CVEs by 300}.
+            \end{itemize}
+            % \item [\textopenbullet] \textbf{Tech Stack:} Kubernetes, Ceph, Shell, Python, TypeScript, FAISS, Ansible, Docker.
+          \resumeItemListEnd
+        \vspace{-3.5mm}
+    \resumeSubHeadingListEnd
+    \vspace{0.5mm}
+    \resumeSubHeadingListStart
+        \vspace{-5.5mm}
+        \resumeProject
+          {HPE Internship}{HPC Software Engineer}
+          {Feb '24 - Aug '24}{Bangalore, India\:}
+          \vspace{-1mm}
+          \resumeItemListStart
+            \item [\textopenbullet] Upgraded \textbf{Istio} from \textbf{v1.11.8 to v1.19.10} across large Cray clusters with minimal downtime.
+            \item [\textopenbullet] Built automation to validate Istio versions across pod and container images (pilot and proxyv2).
+            \item [\textopenbullet] Implemented \textbf{rollout restart workflows} for non-compliant pods with stabilization and rollout checks.
+            \item [\textopenbullet] Added post-upgrade checks to improve reliability/observability and enforce correct Istio versions.
+            \item [\textopenbullet] Documented upgrade procedures, test cases, and known issues for future service-mesh upgrades.
+        \resumeItemListEnd
+        \vspace{-3.5mm}
+    \resumeSubHeadingListEnd
+    \vspace{0.2mm}
+    
+    \resumeSubHeadingListStart
+        \vspace{-5.5mm}
+        \resumeProject
+          {HPC Security Dashboard}{HPE-CTY Program}
+          {Jan '23 - Jun '23}{\href{https://github.com/keshav-06/HPC-Security-Dashboard}{\faGithub \: \textcolor{blue}{keshav-06/HPC-Security-Dashboard}}}
+          \vspace{-1mm}
+          \resumeItemListStart
+            \item [\textopenbullet] Built a \textbf{Grafana} security dashboard to visualize \textbf{Kubernetes} cluster metrics.
+            \item [\textopenbullet] Integrated \textbf{Cilium} with Kubernetes to strengthen network-policy enforcement.
+            \item [\textopenbullet] Used Docker, Prometheus, and Kube-Bench for containerization, monitoring, and compliance checks.
+            \item [\textopenbullet] Gained hands-on exposure to Grafana, Prometheus, \textbf{eBPF}, and Cilium in K8s security workflows.
+        \resumeItemListEnd
+        \vspace{-3.5mm}
+    \resumeSubHeadingListEnd
+    \vspace{-9.9mm}
+    
+    %-----------TECHNICAL SKILLS-----------------
+    {\large \textbf{\begin{tcolorbox}\textsc{TECHNICAL SKILLS}\end{tcolorbox}}}
+    \vspace{-6mm}
+    \begin{itemize}[leftmargin=3mm, labelsep=1mm]
+    \setlength{\parskip}{1pt} \setlength{\itemsep}{1pt}
+        \item[\textbullet] {\bf Programming Skills:} C, C++, Python, Java, \& SQL
+        \item[\textbullet] {\bf Cloud Native:} Docker, Kubernetes, Istio, Helm, Ansible
+        \item[\textbullet] {\bf Certification:} \href{https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/f0baee94-2d0e-4151-b4df-449370288ac0-keshav-varshney-4262566d-a64c-4106-a91d-bd9778908b00-certificate.pdf}{CKAD (Certified Kubernetes Application Developer)}
+        \item[\textbullet] {\bf API Development:} Flask, Flask-RESTful, Swagger
+        \item[\textbullet] {\bf CI/CD:} GitHub Actions, Jenkins
+        \item[\textbullet] {\bf Miscellaneous:} Linux Shell, unittest, mypy, pytest, pylint
+    \end{itemize}
+    \vspace{-1mm}
+
+    \vspace{-9.5mm}
+
+    %-----------Certificates-----------------
+    \iffalse
+    {\large \textbf{\begin{tcolorbox}\textsc{CERTIFICATES}\: \href{https://drive.google.com/drive/folders/14JZ9IaZM3bLZF1fz0n6lMlqH7tjJZEMh?usp=sharing}{\faLink} \end{tcolorbox}}}
+    \vspace{-5mm}
+    \begin{itemize}[leftmargin=-2.5mm]
+    % \setlength{\parskip}{2pt} \setlength{\itemsep}{1pt plus 1pt}
+      \resumeItemListStart
+        \item[\textbullet] {\href{https://drive.google.com/file/d/1o5ahN5Uf1AmeoqCeYqwO8xt1UNgbxsD4/view?usp=drive_link}{\textbf{HPE Internship}}} 
+        {Issued by Hewlett Packard Enterprise} 
+        \item[\textbullet] {\href{https://drive.google.com/file/d/1O5_5wWGjXAV2S2S918kOg7jZI-7lp9ab/view?usp=sharing}{\textbf{HPE CTY Program}}} 
+        {Issued by Hewlett Packard Enterprise} (Crafted a Security Dashboard for K8s)
+            
+      \resumeItemListEnd
+    \end{itemize}
+    \vspace{-2.8mm}
+    \fi
+    \iffalse
+    %-----------PROJECTS-----------------
+    {\large \textbf{\begin{tcolorbox}\textsc{PROJECTS}\end{tcolorbox}}}
+    \resumeSubHeadingListStart
+        \vspace{-5.5mm}
+        \resumeProject
+          {Let's-Fit} {Fitness Tracker}
+          {Aug '23 - Nov '23}
+          {\href{https://github.com/keshav-06/Let-us-fit}{\faGithub \: \textcolor{blue}{keshav-06/Let-us-fit}}}
+          \vspace{-1mm}
+          \resumeItemListStart
+            \item[\textopenbullet]  {Deployed a fitness tracker wearable to keep track of the daily exercise like \textbf{push-ups, armcircles \& squats}.}
+            \item [\textopenbullet] {Trained the model using \textbf{Neural networks \& 2D Convolution} in tensorflow using edge-impulse.}
+            \item [\textopenbullet] {Studied about \textbf{Arduino Nano 33 BLE, Firebase connectivity, edge-impulse \& Arduino Programming.}}
+          \resumeItemListEnd
+          \vspace{-4mm}
+    
+        \resumeProject
+          {Find My Buddy}
+          {Web Dev Project}
+          {Aug '22 - Nov '22}
+          {\href{https://github.com/keshav-06/find-my-buddy}{\faGithub \: \textcolor{blue}{keshav-06/find-my-buddy}}}
+          \vspace{-1mm}
+          \resumeItemListStart
+            \item[\textopenbullet] {Created a user-friendly website that makes it simple for consumers to find their ideal pet companion.}
+            \item[\textopenbullet]  {Designed the website using \textbf{express, HTML, CSS} and using \textit{MongoDB} as the database.}
+            \item[\textopenbullet] {Learned about \textbf{express, HTML, CSS, MongoDB, Google authorisation, cookies \& session.}}
+          \resumeItemListEnd
+          \vspace{-4mm}
+    \resumeSubHeadingListEnd
+    \vspace{-9.5mm}
+    \fi
+    
+    %-----------EDUCATION-----------------
+    {\large \textbf{\begin{tcolorbox}\textsc{EDUCATION}\end{tcolorbox}}}
+    \vspace{-1.5mm}
+    \setlength{\tabcolsep}{5pt}
+    \small{\begin{tabularx}
+    {\dimexpr\textwidth-3mm\relax}{|c|C|c|c|}
+    \hline
+      \textbf{Year} & \textbf{Degree } & \textbf{Institute}  & \textbf{CGPA/\%}\\
+      \hline
+      \hspace{3mm}2020-2024\hspace{3mm} & B.Tech., Computer Science and Engineering& Vellore Institute of Technology, Vellore &  9.30/10\\
+     \hline
+      2019\hspace{3mm} & Class 12th - CBSE Board\hspace{3mm} & Silver Stone Public School, Chandausi & 94.4\%  \\
+      \hline
+      2017\hspace{3mm} & Class 10th - CBSE Board\hspace{3mm} & R.R.K. Sr. Sec. School, Chandausi & 10/10 \\
+      \hline
+    \end{tabularx}}
+    \vspace{-1.5mm}
+
+    \end{document}
