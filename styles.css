@@ -2334,8 +2334,6 @@ html[data-theme="light"] .terminal-view .terminal-bottom-bar { background: #fff4
     place-items: center;
     padding: 0;
   }
-  body.developer-portfolio .nav-actions .theme-toggle > svg,
-  body.developer-portfolio .nav-actions .menu-toggle > svg { display: block; grid-area: 1 / 1; margin: 0; }
-  body.developer-portfolio .nav-actions .theme-toggle > svg { width: 20px; height: 20px; }
-  body.developer-portfolio .nav-actions .menu-toggle > svg { width: 22px; height: 22px; }
+  body.developer-portfolio .nav-actions .theme-toggle > svg { grid-area: 1 / 1; width: 20px; height: 20px; margin: 0; }
+  body.developer-portfolio .nav-actions .menu-toggle > svg { display: block; grid-area: 1 / 1; width: 22px; height: 22px; margin: 0; }
 }
