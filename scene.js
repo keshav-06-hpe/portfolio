@@ -119,13 +119,14 @@
     connectorMaterial.color.setHex(lightTheme ? 0x8e779d : 0xb9a8c2);
     floor.material.opacity = lightTheme ? .18 : .16;
     updateLayerColors();
-    renderer.render(scene, camera);
+    if (!compact) renderer.render(scene, camera);
     canvas.dataset.theme = lightTheme ? "light" : "dark";
     scheduleRender();
   }
 
   function render(time = 0) {
     frame = 0;
+    if (compact) return;
     if (!paused) {
       structure.rotation.y += (pointerHorizontal * .16 - structure.rotation.y) * .035;
       structure.rotation.x += (pointerVertical * .05 - structure.rotation.x) * .035;
@@ -139,7 +140,7 @@
   }
 
   function scheduleRender() {
-    if (!frame) frame = requestAnimationFrame(render);
+    if (!frame && !compact) frame = requestAnimationFrame(render);
   }
 
   function resize() {
@@ -147,6 +148,15 @@
     const height = hero.clientHeight;
     const aspect = width / height;
     compact = width <= 560;
+    if (compact) {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0;
+      canvas.hidden = true;
+      tools.hidden = true;
+      return;
+    }
+    canvas.hidden = false;
+    tools.hidden = false;
     const viewHeight = compact ? 16.5 : width <= 800 ? 13.7 : 11.6;
     camera.left = -viewHeight * aspect / 2;
     camera.right = viewHeight * aspect / 2;

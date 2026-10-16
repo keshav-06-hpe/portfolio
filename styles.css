@@ -2351,4 +2351,7 @@ html[data-theme="light"] .terminal-view .terminal-bottom-bar { background: #fff4
     body.developer-portfolio .hero-socials a { gap: 4px; font-size: 13px; font-weight: 700; }
     body.developer-portfolio .hero-socials svg { display: block; width: 12px; height: 12px; }
     body.developer-portfolio .hero-index { align-self: flex-start; margin-left: 0; font-size: 10px; }
+    .studio-hero .hero-image,
+    .studio-hero #topology-canvas,
+    .studio-hero .scene-tools { display: none !important; }
   }

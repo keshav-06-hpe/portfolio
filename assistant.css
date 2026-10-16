@@ -101,5 +101,7 @@ html[data-theme] body.developer-portfolio .portfolio-assistant :is(.pa-launcher,
   .portfolio-assistant { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); }
   .portfolio-assistant .pa-panel { width: calc(100vw - 24px); height: min(590px, calc(100dvh - 32px)); bottom: 0; }
   .portfolio-assistant .pa-launcher[aria-expanded="true"] { visibility: hidden; }
+  .portfolio-assistant .pa-launcher { width: 48px; height: 48px; padding: 0; }
+  .portfolio-assistant .pa-launcher span { display: none; }
 }
 @media print { .portfolio-assistant { display: none; } }
