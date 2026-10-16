@@ -8,7 +8,7 @@ profile. No framework, package installation, build step, or backend is required.
 Open [index.html](index.html) in a browser. The site also works on any static
 web host, including GitHub Pages, Netlify, and Cloudflare Pages.
 
-Publish `index.html`, `styles.css`, `theme.js`, `script.js`, `scene.js`, and the `assets` directory
+Publish `index.html`, `styles.css`, `theme.js`, `script.js`, `scene.js`, `commands.js`, and the `assets` directory
 together, preserving their relative paths. No build command is needed.
 
 ## Edit
@@ -18,6 +18,7 @@ together, preserving their relative paths. No build command is needed.
 - Dark/light preference and header toggle: [theme.js](theme.js).
 - Navigation, project filters, and email copying: [script.js](script.js).
 - Interactive infrastructure visualization: [scene.js](scene.js).
+- Safe, allowlisted portfolio commands: [commands.js](commands.js).
 - Resume source: [resume.tex](resume.tex), preserved unchanged.
 - Downloadable resume: [assets/resume.pdf](assets/resume.pdf).
 
@@ -65,6 +66,11 @@ or screenshots from the GitHub repositories are used.
   light themes. The first visit follows the system color preference; an explicit
   choice is saved in local storage. Theme initialization runs before styles load
   to avoid a wrong-theme flash. Switching still works when storage is unavailable.
+- The command palette opens from the header, mobile menu, or Ctrl/Cmd+K. It
+  supports section navigation, project filters, resume and profile links, and
+  theme changes. Press `/` outside a text field to open it, Escape to close it,
+  and Ctrl/Cmd+Up or Down in the input to revisit command history. Only explicit
+  portfolio commands are accepted; input is never evaluated or sent to a shell.
 - Creative Space features Keshav's novel, *Lies I Perpetuated, In Silence*.
   The title, author, Kindle format, language, and publication date come from its
   [Amazon listing](https://www.amazon.in/dp/B0GX2TJ492). The synopsis is a short

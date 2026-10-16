@@ -399,6 +399,7 @@ h2 { font-size: 35px; line-height: 1.3; font-weight: 650; }
 }
 @media (max-width: 360px) {
   .container { width: calc(100% - 36px); }
+  .nav-actions > .resume-link { display: none; }
   h1 { font-size: 52px; }
   .hero-actions { gap: 14px; }
   .hero-bottom { gap: 10px; }
@@ -1105,6 +1106,45 @@ html[data-theme="light"] .theme-toggle .theme-moon { display: block; }
 .theme-toggle:hover { background: #75debf1a; }
 .theme-tooltip { position: absolute; top: calc(100% + 10px); right: 0; padding: 7px 10px; font-size: 11px; white-space: nowrap; color: #10291e; background: #d5eee0; opacity: 0; pointer-events: none; z-index: 1; }
 .theme-toggle:hover .theme-tooltip, .theme-toggle:focus-visible .theme-tooltip { opacity: 1; }
+.command-launcher { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 40px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--ink); font: 11px var(--font); cursor: pointer; transition: background .18s, border-color .18s; }
+.command-launcher:hover, .command-launcher:focus-visible { background: #75debf1a; border-color: #75debf; }
+.command-launcher > svg { width: 16px; height: 16px; color: #75debf; }
+.command-launcher kbd, .command-menu-item kbd { padding: 3px 5px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); background: #ffffff08; font: 9px var(--mono); }
+.command-menu-item { display: flex; align-items: center; gap: 9px; width: 100%; padding: 14px 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; font: 12px var(--font); cursor: pointer; }
+.command-menu-item > svg { width: 16px; height: 16px; color: #75debf; }
+.command-menu-item kbd { margin-left: auto; }
+.command-dialog { width: min(640px, calc(100% - 32px)); max-width: 640px; max-height: min(720px, calc(100dvh - 40px)); padding: 0; overflow: hidden; border: 1px solid #46574d; border-radius: 9px; color: #ecf3ef; background: #151b18; box-shadow: 0 28px 100px #0009; }
+.command-dialog[open] { animation: command-appear .16s ease-out both; }
+.command-dialog::backdrop { background: #050908c9; backdrop-filter: blur(5px); }
+.command-panel { display: flex; max-height: min(720px, calc(100dvh - 40px)); flex-direction: column; }
+.command-heading { display: flex; align-items: center; gap: 13px; padding: 20px 22px; border-bottom: 1px solid #35433b; }
+.command-mark { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid #42594a; border-radius: 5px; color: #86e5ba; background: #21372a; }
+.command-mark svg { width: 19px; height: 19px; }
+.command-heading h2 { font: 600 16px/1.4 var(--display); color: inherit; }
+.command-heading p { margin-top: 2px; color: #a8b7ad; font-size: 11px; }
+.command-close { display: grid; width: 35px; height: 35px; flex: 0 0 auto; place-items: center; margin-left: auto; border: 1px solid #405046; border-radius: 4px; background: transparent; color: #c8d5cd; cursor: pointer; }
+.command-close:hover { color: #fff; background: #2b3c31; }
+.command-close svg { width: 16px; height: 16px; }
+.command-input-wrap { display: flex; align-items: center; gap: 10px; margin: 18px 20px 0; padding: 0 13px; min-height: 52px; border: 1px solid #537262; border-radius: 5px; background: #0e1411; }
+.command-prompt, .command-separator { flex: 0 0 auto; color: #87e1b9; font: 12px var(--mono); }
+.command-separator { color: #748c7a; }
+.command-input-wrap input { width: 100%; min-width: 0; height: 49px; border: 0; outline: 0; color: #f0f5f0; background: transparent; font: 13px var(--mono); }
+.command-input-wrap input::placeholder { color: #819086; opacity: 1; }
+.command-input-wrap:focus-within { border-color: #8ce7bc; box-shadow: 0 0 0 2px #75debf26; }
+.command-escape { flex: 0 0 auto; padding: 4px 5px; border: 1px solid #46564b; border-radius: 3px; color: #aab8ae; font: 8px var(--mono); }
+.command-status { min-height: 30px; padding: 9px 22px 3px; color: #a8b7ad; font-size: 10px; }
+.command-suggestions { min-height: 0; overflow: auto; padding: 3px 10px 10px; margin: 0; list-style: none; overscroll-behavior: contain; }
+.command-option { display: grid; grid-template-columns: minmax(130px, .8fr) minmax(0, 1.2fr) 18px; align-items: center; gap: 12px; min-height: 46px; padding: 9px 12px; border: 1px solid transparent; border-radius: 4px; cursor: pointer; }
+.command-option[aria-selected="true"], .command-option:hover { border-color: #385644; background: #223329; }
+.command-option-name { overflow-wrap: anywhere; color: #e2ebe4; font: 10px/1.6 var(--mono); }
+.command-option-description { color: #a8b7ad; font-size: 10px; line-height: 1.5; }
+.command-option-enter { justify-self: end; color: #a8b7ad; font: 11px var(--mono); opacity: 0; }
+.command-option[aria-selected="true"] .command-option-enter { opacity: 1; }
+.command-footer { display: flex; justify-content: space-between; gap: 12px; padding: 12px 20px; border-top: 1px solid #35433b; color: #a8b7ad; font-size: 9px; }
+.command-footer > span:first-child { display: flex; align-items: center; gap: 5px; }
+.command-footer kbd { min-width: 17px; padding: 3px 4px; border: 1px solid #46564b; border-radius: 3px; color: #d2ded4; font: 9px var(--mono); text-align: center; }
+.command-footer-divider { margin-inline: 4px; }
+@keyframes command-appear { from { opacity: 0; transform: translateY(-7px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
 html[data-theme="light"] .developer-portfolio { --paper: #f7f9f8; --ink: #1e3028; --muted: #52675c; --line: #cbd7cf; --green: #176a4f; --lime: #176a4f; --forest: #e8f0eb; }
 html[data-theme="light"] .developer-portfolio .site-header { background: #f7f9f8f5; }
 html[data-theme="light"] .developer-portfolio .brand-label { color: #52675c; }
@@ -1185,13 +1225,42 @@ html[data-theme="light"] .social-rail a:focus-visible { background: #deebe3; col
 html[data-theme="light"] .developer-portfolio :is(.social-rail a > span, .control-tooltip, .theme-tooltip) { background: #1e3028; color: #fff; }
 html[data-theme="light"] .developer-portfolio :focus-visible { outline-color: #176a4f; }
 html[data-theme="light"] ::selection { background: #b9e5cf; color: #123a29; }
+html[data-theme="light"] .command-launcher { border-color: #cbd7cf; }
+html[data-theme="light"] .command-launcher:hover, html[data-theme="light"] .command-launcher:focus-visible { border-color: #176a4f; background: #dcebe2; }
+html[data-theme="light"] .command-menu-item kbd, html[data-theme="light"] .command-launcher kbd { background: #fff; }
+html[data-theme="light"] .command-dialog { color: #20352a; background: #fbfdfb; border-color: #bacbc0; box-shadow: 0 28px 100px #18291e33; }
+html[data-theme="light"] .command-heading, html[data-theme="light"] .command-footer { border-color: #d5e0d8; }
+html[data-theme="light"] .command-mark { color: #176a4f; background: #e4f1e9; border-color: #bbd2c2; }
+html[data-theme="light"] .command-heading p, html[data-theme="light"] .command-status, html[data-theme="light"] .command-option-description, html[data-theme="light"] .command-footer { color: #52675c; }
+html[data-theme="light"] .command-close { color: #40584a; border-color: #cbd7cf; }
+html[data-theme="light"] .command-close:hover { color: #1e3028; background: #e4f1e9; }
+html[data-theme="light"] .command-input-wrap { background: #fff; border-color: #9db8a5; }
+html[data-theme="light"] .command-prompt { color: #176a4f; }
+html[data-theme="light"] .command-input-wrap input { color: #20352a; }
+html[data-theme="light"] .command-input-wrap input::placeholder, html[data-theme="light"] .command-escape { color: #65766b; }
+html[data-theme="light"] .command-escape, html[data-theme="light"] .command-footer kbd { border-color: #cad8ce; }
+html[data-theme="light"] .command-option-name { color: #20352a; }
+html[data-theme="light"] .command-option[aria-selected="true"], html[data-theme="light"] .command-option:hover { border-color: #bed5c5; background: #eaf4ed; }
+html[data-theme="light"] .command-dialog::backdrop { background: #17231bb3; }
 @media (min-width: 561px) and (max-width: 720px) {
   .developer-portfolio .desktop-nav { gap: 10px; }
   .developer-portfolio .desktop-nav a { font-size: 10px; }
   .nav-actions { gap: 8px; }
 }
+@media (max-width: 900px) {
+  .command-launcher { width: 40px; min-width: 40px; padding: 0; }
+  .command-label, .command-shortcut { display: none; }
+}
 @media (max-width: 560px) {
   .theme-toggle { width: 36px; height: 36px; }
+  .command-launcher { width: 36px; min-width: 36px; min-height: 36px; }
+  .command-option { grid-template-columns: minmax(100px, .9fr) minmax(0, 1.1fr) 16px; gap: 8px; padding-inline: 8px; }
+  .command-option-name { font-size: 9px; }
+  .command-option-description { font-size: 9px; }
+  .command-heading { padding: 15px; }
+  .command-input-wrap { margin-inline: 12px; }
+  .command-status { padding-inline: 14px; }
+  .command-footer { padding-inline: 13px; font-size: 8px; }
 }
 @media print {
   .site-header, .hero-image, .hero-shade, .atlas-visual, .work-filters, .contact-section, .site-footer, .hero-actions, .hero-socials { display: none; }
