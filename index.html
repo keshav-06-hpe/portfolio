@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#101313">
+    <meta name="theme-color" content="#130c1b">
     <script src="theme.js"></script>
     <meta name="description" content="Keshav Varshney, Software Engineer at Hewlett Packard Enterprise. Distributed systems, cloud infrastructure, reliability engineering, and AI-powered tooling. HPE-CTY mentor.">
     <meta property="og:title" content="Keshav Varshney | Software Engineer">
@@ -15,11 +15,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assistant.css">
     <script src="assets/lucide.min.js" defer></script>
     <script src="assets/three.min.js" defer></script>
     <script src="scene.js" defer></script>
     <script src="terminal.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="assistant.js" defer></script>
   </head>
   <body class="developer-portfolio" data-view="ui">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -381,6 +383,29 @@
     </main>
 
     <footer class="site-footer" id="site-footer"><div class="container footer-inner"><a class="wordmark" href="#home" aria-label="Back to top">kv<span>.</span></a><p>&copy; <span id="year">2026</span> Keshav Varshney</p><div class="footer-links"><a href="https://github.com/keshav-06" target="_blank" rel="noopener noreferrer">Personal GitHub <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a href="https://github.com/keshav-06-hpe" target="_blank" rel="noopener noreferrer">Work GitHub <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a href="https://www.linkedin.com/in/keshav062" target="_blank" rel="noopener noreferrer">LinkedIn <i data-lucide="arrow-up-right" aria-hidden="true"></i></a><a href="#home" class="back-to-top" aria-label="Back to top" title="Back to top"><i data-lucide="arrow-up" aria-hidden="true"></i></a></div></div></footer>
+
+    <aside class="portfolio-assistant" aria-label="Portfolio assistant" hidden>
+      <section class="pa-panel" id="portfolio-assistant-panel" role="dialog" aria-modal="false" aria-labelledby="pa-title" hidden>
+        <header class="pa-header">
+          <div><h2 id="pa-title">Ask Keshav</h2><p>Portfolio FAQ</p></div>
+          <button class="pa-icon" id="pa-reset" type="button" aria-label="Clear conversation" title="Clear conversation"><i data-lucide="rotate-ccw" aria-hidden="true"></i></button>
+          <button class="pa-icon" id="pa-close" type="button" aria-label="Close assistant" title="Close assistant"><i data-lucide="x" aria-hidden="true"></i></button>
+        </header>
+        <div class="pa-messages" id="pa-messages" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+        <div class="pa-suggestions" role="group" aria-label="Suggested questions">
+          <button type="button" data-pa-question="What does Keshav work on?">Experience</button>
+          <button type="button" data-pa-question="What is ATLAS?">ATLAS</button>
+          <button type="button" data-pa-question="What are his skills?">Skills</button>
+          <button type="button" data-pa-question="Tell me about his book">His book</button>
+        </div>
+        <form class="pa-form" id="pa-form" autocomplete="off">
+          <label class="sr-only" for="pa-question">Question about Keshav</label>
+          <input id="pa-question" name="question" type="text" maxlength="500" placeholder="Ask about Keshav..." required autocomplete="off">
+          <button class="pa-send" type="submit" aria-label="Send question" title="Send question"><i data-lucide="arrow-up" aria-hidden="true"></i></button>
+        </form>
+      </section>
+      <button class="pa-launcher" id="pa-launcher" type="button" aria-controls="portfolio-assistant-panel" aria-expanded="false" aria-haspopup="dialog"><i data-lucide="message-circle" aria-hidden="true"></i><span>Ask Keshav</span></button>
+    </aside>
 
     <main class="terminal-view" id="terminal-view" aria-labelledby="terminal-heading" hidden>
       <div class="terminal-shell">

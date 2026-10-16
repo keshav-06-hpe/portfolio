@@ -8,7 +8,7 @@ profile. No framework, package installation, build step, or backend is required.
 Open [index.html](index.html) in a browser. The site also works on any static
 web host, including GitHub Pages, Netlify, and Cloudflare Pages.
 
-Publish `index.html`, `styles.css`, `theme.js`, `script.js`, `scene.js`, `terminal.js`, and the `assets` directory
+Publish `index.html`, `styles.css`, `theme.js`, `script.js`, `scene.js`, `terminal.js`, `assistant.css`, `assistant.js`, and the `assets` directory
 together, preserving their relative paths. No build command is needed.
 
 ## Edit
@@ -19,6 +19,7 @@ together, preserving their relative paths. No build command is needed.
 - Navigation, project filters, and email copying: [script.js](script.js).
 - Interactive infrastructure visualization: [scene.js](scene.js).
 - Separate UI/terminal mode and allowlisted portfolio commands: [terminal.js](terminal.js).
+- Local FAQ answers and panel styling: [assistant.js](assistant.js) and [assistant.css](assistant.css).
 - Resume source: [resume.tex](resume.tex), preserved unchanged.
 - Downloadable resume: [assets/resume.pdf](assets/resume.pdf).
 
@@ -62,9 +63,18 @@ or screenshots from the GitHub repositories are used.
 
 ## Assets and Behavior
 
+- **Ask Keshav** is a local, rule-based portfolio FAQ, not a generative AI chatbot.
+  It reads facts and source links from the page for experience, individual projects,
+  skills, education, certifications, mentorship, writing, location, and contact.
+  Unrecognized questions receive a fallback; unavailable personal details are not guessed.
+  Questions are rendered as text, never HTML, and are not stored or sent to a server.
+  Conversation history lasts only until reload or Clear conversation (up to 20 exchanges).
+  The non-modal panel supports Escape and focus restoration, follows the current theme,
+  and closes and hides when switching to terminal mode. Edit page content for facts;
+  edit the topic patterns in `assistant.js` to add supported question phrasing.
 - The sun/moon button switches the entire page and 3D scene between dark and
-  light themes. The first visit follows the system color preference; an explicit
-  choice is saved in local storage. Theme initialization runs before styles load
+  light themes. First visits default to dark; an explicit choice is saved in local
+  storage. Theme initialization runs before styles load
   to avoid a wrong-theme flash. Switching still works when storage is unavailable.
 - The terminal is a separate, shareable `?view=terminal` interface. A UI/Terminal
   switch changes views without a server; browser back/forward also restores mode.

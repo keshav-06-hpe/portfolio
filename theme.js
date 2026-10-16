@@ -26,7 +26,7 @@
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f7f9f8" : "#101313";
+    document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#fffbea" : "#130c1b";
     updateToggle();
     window.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
   }
